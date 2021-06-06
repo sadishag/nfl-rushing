@@ -4,7 +4,10 @@
   "description": "theScore take home assessment ",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest "
+    "dev": "nodemon --exec babel-node src/index.js",
+    "test": "jest",
+    "test:cover": "jest --coverage",
+    "test:watch": "jest --watchAll"
   },
   "keywords": [
     "nodejs",
@@ -12,5 +15,18 @@
     "api"
   ],
   "author": "Sadisha Galappatti",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/node": "^7.14.2",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.14.4",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.28.0",
+    "jest": "^27.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
