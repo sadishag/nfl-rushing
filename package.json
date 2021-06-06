@@ -1,0 +1,16 @@
+{
+  "name": "nfl-rushing",
+  "version": "1.0.0",
+  "description": "theScore take home assessment ",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest "
+  },
+  "keywords": [
+    "nodejs",
+    "react",
+    "api"
+  ],
+  "author": "Sadisha Galappatti",
+  "license": "ISC"
+}
