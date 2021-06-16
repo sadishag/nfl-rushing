@@ -1,0 +1,13 @@
+.search-container {
+  display: 'flex';
+  justify-content: 'space-between';
+  align-items: 'flex-end';
+}
+
+.search-label {
+  font-size: large;
+}
+
+#search-icon {
+  font-size: large;
+}
