@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 
 const Search = (props) => {
-  const { searchQuery, setSearchQuery } = props;
+  const { setSearchQuery, setPage } = props;
 
   return (
     <div className="search-container">
@@ -13,6 +13,7 @@ const Search = (props) => {
         className="search-text"
         type="text"
         onChange={(e) => {
+          setPage(1);
           setSearchQuery(e.target.value);
         }}
       />

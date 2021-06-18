@@ -39,7 +39,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>NFL-Rushing</h1>
-        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <Search setSearchQuery={setSearchQuery} setPage={setPage} />
         <RowDropdown
           rowsPerPage={rowsPerPage}
           setRowsPerPage={setRowsPerPage}
