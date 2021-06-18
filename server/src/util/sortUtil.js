@@ -12,37 +12,6 @@ const SORTBY_TD = 'td';
 const isAscending = (sortOrder) => sortOrder.toLowerCase() === ORDER_ASC;
 
 /**
- * @typedef {Object} compareType
- * @param {Object} a - object of fields
- * @param {Object} b - object of fields
- * @returns {number}
- */
-
-/**
- * Compares Yds field in asscending order
- * @param {compareType}
- */
-const compareAscYds = (a, b) => a['Yds'] - b['Yds'];
-
-/**
- * Compares Yds field in Descending order
- * @param {compareType}
- */
-const compareDescYds = (a, b) => b['Yds'] - a['Yds'];
-
-/**
- * Compares TD field in asscending order
- * @param {compareType}
- */
-const compareAscTD = (a, b) => a['TD'] - b['TD'];
-
-/**
- * Compares TD field in Descending order
- * @param {compareType}
- */
-const compareDescTD = (a, b) => b['TD'] - a['TD'];
-
-/**
  * Parses out the longest yards and ignores the T flag if it exists
  * @param {String|number} lngNumber - This is sometimes a string or a number like '55T' or 55
  * @returns {number}
@@ -78,27 +47,16 @@ const compareDescLng = (a, b) => {
 };
 
 /**
- *
- * @param {Array<Object>} parsedData - Parsed array of objects containing Lng, Yds, TD fields at least
- * @param {String} sortBy - either Lng, Yds, or TD (cases don't matter)
+ * This is for custom fields sorting that the DB can't handle because the fields are loosly typed (can be string/integer/float/etc.)
+ * @param {Array<Object>} parsedData - Parsed array of objects containing Lng fields at least
+ * @param {String} sortBy - either Lng(cases don't matter)
  * @param {String} sortOrder - either ASC or DESC (cases don't matter)
  */
 const sortHelper = (parsedData, sortBy, sortOrder) => {
-  switch (sortBy.toLowerCase()) {
-    case SORTBY_YDS:
-      if (isAscending(sortOrder)) parsedData.sort(compareAscYds);
-      else parsedData.sort(compareDescYds);
-      break;
-    case SORTBY_LNG:
-      if (isAscending(sortOrder)) parsedData.sort(compareAscLng);
-      else parsedData.sort(compareDescLng);
-      break;
-    case SORTBY_TD:
-      if (isAscending(sortOrder)) parsedData.sort(compareAscTD);
-      else parsedData.sort(compareDescTD);
-    default:
-      break;
+  if (sortBy.toLowerCase() === SORTBY_LNG) {
+    if (isAscending(sortOrder)) parsedData.sort(compareAscLng);
+    else parsedData.sort(compareDescLng);
   }
 };
 
-export { sortHelper };
+export { sortHelper, isAscending };

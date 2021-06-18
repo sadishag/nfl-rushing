@@ -1,5 +1,5 @@
-import fs from 'fs';
-import { sortHelper } from '../util/sortUtil';
+import { sortHelper, isAscending } from '../util/sortUtil';
+import { getClient, getAllData, getDataWithFilters } from '../controller/db';
 
 /**
  * gets the contents of rushing.json
@@ -10,11 +10,27 @@ import { sortHelper } from '../util/sortUtil';
  * @param {String} sortOrder - sort direction either ASC or DESC
  * @returns {Object} json object of all the rushing contents
  */
-const getRushingData = (page, rowsPerPage, searchByName, sortBy, sortOrder) => {
+const getRushingData = async (
+  page,
+  rowsPerPage,
+  searchByName,
+  sortBy,
+  sortOrder
+) => {
   try {
-    const data = fs.readFileSync(`${__dirname}/../data/rushing.json`, 'utf-8');
-    const regex = new RegExp(`.*${searchByName || ''}.*`, 'i');
-    let parsedData = JSON.parse(data).filter((d) => regex.test(d.Player));
+    const dbClient = await getClient();
+
+    const sortQuery = {};
+    if (sortBy && sortBy !== 'Lng' && sortOrder) {
+      sortQuery[sortBy] = isAscending(sortOrder) ? 1 : -1;
+    }
+
+    let parsedData = await getDataWithFilters(
+      dbClient,
+      searchByName,
+      sortQuery
+    );
+
     sortHelper(parsedData, sortBy, sortOrder);
     if (!page && !rowsPerPage) {
       return { totalPages: 1, currentPage: 1, data: parsedData };
@@ -28,7 +44,7 @@ const getRushingData = (page, rowsPerPage, searchByName, sortBy, sortOrder) => {
     return {
       totalPages: numPages,
       currentPage: page,
-      data: parsedData.slice(pageStartIndex, pageEndIndex),
+      data: parsedData.slice(pageStartIndex, pageEndIndex)
     };
   } catch (error) {
     console.error(error);

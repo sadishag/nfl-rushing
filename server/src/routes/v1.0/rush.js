@@ -3,7 +3,7 @@ import { getRushingData } from '../../controller/rushing';
 import { generateCSV } from '../../util/csvUtil';
 const rush = express();
 
-rush.get('/', (req, res) => {
+rush.get('/', async (req, res) => {
   try {
     const page = parseInt(req.query.page);
     const rowsPerPage = parseInt(req.query.rowsPerPage);
@@ -11,7 +11,7 @@ rush.get('/', (req, res) => {
     const sortBy = req.query.sortBy || ''; // Yds, Lng, TD
     const sortOrder = req.query.sortOrder || ''; // ASC, DESC
 
-    const data = getRushingData(
+    const data = await getRushingData(
       page,
       rowsPerPage,
       playerName,
@@ -28,9 +28,10 @@ rush.get('/', (req, res) => {
   }
 });
 
-rush.get('/download-csv', (req, res) => {
+rush.get('/download-csv', async (req, res) => {
   try {
-    const data = generateCSV();
+    const rushData = await getRushingData('', '', '', '', '');
+    const data = generateCSV(rushData.data);
     const { Readable } = require('stream');
     const readStream = Readable.from(data);
     res.attachment('rushing.csv');
