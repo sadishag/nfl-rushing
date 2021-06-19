@@ -18,11 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 // The api which will provide the initial data load to the webpage
 app.use('/api', api);
 
-// sample route
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
-
 // get port from env variable or default to 3000
 const { PORT } = process.env;
 const port = PORT ? PORT : 8080;
