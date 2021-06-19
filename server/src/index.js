@@ -25,3 +25,5 @@ const port = PORT ? PORT : 8080;
 app.listen(port, () => {
   console.log(`Running on port: ${port}`);
 });
+
+module.exports = app;

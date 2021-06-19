@@ -15,7 +15,7 @@ const getClient = async () => {
   const client = await MongoClient.connect(connectionUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-  }).catch((err) => console.log(err));
+  });
 
   if (!client) {
     return null;
@@ -47,7 +47,7 @@ const getDataWithFilters = async (
     const collection = getDBCollection(client);
     const res = await collection
       .find(
-        { Player: new RegExp(`.*${searchByName || ''}.*`, 'i') },
+        { Player: new RegExp(`.*${searchByName}.*`, 'i') },
         { projection: { _id: 0 } }
       )
       .sort(sortQuery);
