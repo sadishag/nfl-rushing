@@ -19,25 +19,3 @@ services:
     build: ./mongo-seed
     links:
       - mongodb
-  server:
-    build: ../server
-    restart: always
-    ports:
-      - '8080:8080'
-    environment:
-      PORT: 8080
-      MONGODB_USER: root
-      MONGODB_PASS: example
-      MONGODB_URL: mongodb://root:example@mongodb:27017
-    links:
-      - mongodb
-  ui:
-    build: ../ui
-    restart: always
-    ports:
-      - '3000:3000'
-    environment:
-      PROXY_HOST: server
-      PROXY_PORT: 8080
-    links:
-      - server

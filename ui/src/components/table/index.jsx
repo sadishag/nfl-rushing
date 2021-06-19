@@ -11,8 +11,8 @@ const renderTableRows = (data) => {
         <td>{Player}</td>
         <td>{Team}</td>
         <td>{Pos}</td>
+        <td>{row['Att/G']}</td>
         <td>{Att}</td>
-        <td>{row['Yds/G']}</td>
         <td>{Yds}</td>
         <td>{Avg}</td>
         <td>{row['Yds/G']}</td>
