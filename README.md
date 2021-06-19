@@ -71,9 +71,9 @@ cd docker
 docker-compose up -d
 ```
 
-This will run all the server, ui and mongodb + seed in separate containers on a bridge network in docker on your machine. The environment variables are set so pointing to the right places and should be simple to create images off of.
+This will run all the server, ui and mongodb + seed (for mongo data) in separate docker containers on a bridge network. The environment variables the code is all pointing to the right places and should be simple to create images off of.
 
-If you are developing in server or ui and want to run against your own mongodb container/mongodb service on your machine, then you just need to follow these steps.
+> If you are developing the server or ui and want to run against your own mongodb container/mongodb service on your machine, then you just need to follow the steps below.
 
 ## Installing and running the server
 
