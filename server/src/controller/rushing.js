@@ -1,5 +1,5 @@
 import { sortHelper, isAscending } from '../util/sortUtil';
-import { getClient, getAllData, getDataWithFilters } from '../controller/db';
+import { getClient, getDataWithFilters } from './db';
 
 /**
  * gets the contents of rushing.json

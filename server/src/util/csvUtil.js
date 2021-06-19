@@ -60,4 +60,4 @@ const generateCSV = (rushData) => {
   }
 };
 
-export { generateCSV, buildCSVString };
+export { generateCSV };
