@@ -7,8 +7,7 @@
     "dev": "nodemon --exec babel-node src/index.js",
     "test": "jest",
     "test:cover": "jest --coverage",
-    "test:watch": "jest --watchAll",
-    "webpack": "webpack -w"
+    "test:watch": "jest --watchAll"
   },
   "keywords": [
     "nodejs",
@@ -32,10 +31,7 @@
     "eslint": "^7.28.0",
     "jest": "^27.0.4",
     "nodemon": "^2.0.7",
-    "style-loader": "^2.0.0",
-    "supertest": "^6.1.3",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0"
+    "supertest": "^6.1.3"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -43,9 +39,6 @@
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "handlebars": "^4.7.7",
-    "mongodb": "^3.6.9",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "mongodb": "^3.6.9"
   }
 }
