@@ -45,7 +45,7 @@ const App = () => {
           setRowsPerPage={setRowsPerPage}
         />
         <a
-          href="http://localhost:8080/api/v1/rush/download-csv"
+          href={`http://localhost:8080/api/v1/rush/download-csv?page=${page}&rowsPerPage=${rowsPerPage}&search=${searchQuery}&sortOrder=${sortOrder}&sortBy=${sortBy}`}
           target="_blank"
           rel="noreferrer"
         >
