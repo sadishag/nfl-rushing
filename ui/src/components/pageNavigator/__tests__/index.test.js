@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { PageNavigator } from '../index';
 
 describe('PageNavigator Tests', () => {
-  it('should render the page navigator', async () => {
+  it('should render the page navigator with the right values', async () => {
     const pageMock = 1;
     const setPageMock = jest.fn();
     const totalPagesMock = 2;
