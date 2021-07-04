@@ -16,8 +16,10 @@ beforeAll(() => {
             return { data: [{ Player: 'goodPlayer' }] };
           } else if (playerName === 'nullPlayer') {
             return null;
-          } else {
+          } else if (playerName === 'errorPlayer') {
             throw new Error('Error getting data');
+          } else {
+            return { data: [{ Player: 'goodPlayer' }] };
           }
         }
       )
@@ -64,6 +66,18 @@ describe('/api/v1/rush/download-csv Tests', () => {
     expect(result.status).toBe(200);
   });
 
+  it('should respond with the sorted and filtered data from', async () => {
+    const rushing = require('../../../controller/rushing');
+    const getRushingDataSpy = jest.spyOn(rushing, 'getRushingData');
+
+    const result = await request(server).get(
+      '/api/v1/rush/download-csv?search=goodPlayer'
+    );
+
+    expect(result.status).toBe(200);
+    expect(getRushingDataSpy).toBeCalledWith('', '', 'goodPlayer', '', '');
+  });
+
   it('should respond with a 500', async () => {
     const rushing = require('../../../controller/rushing');
     const getRushingDataSpy = jest
@@ -72,7 +86,9 @@ describe('/api/v1/rush/download-csv Tests', () => {
         throw new Error('Rushing Error');
       });
 
-    const result = await request(server).get('/api/v1/rush/download-csv');
+    const result = await request(server).get(
+      '/api/v1/rush/download-csv?search=errorPlayer'
+    );
     expect(result.status).toBe(500);
   });
 });

@@ -30,7 +30,17 @@ rush.get('/', async (req, res) => {
 
 rush.get('/download-csv', async (req, res) => {
   try {
-    const rushData = await getRushingData('', '', '', '', '');
+    const playerName = req.query.search;
+    const sortBy = req.query.sortBy || ''; // Yds, Lng, TD
+    const sortOrder = req.query.sortOrder || ''; // ASC, DESC
+
+    const rushData = await getRushingData(
+      '',
+      '',
+      playerName,
+      sortBy,
+      sortOrder
+    );
     const data = generateCSV(rushData.data);
     const { Readable } = require('stream');
     const readStream = Readable.from(data);
